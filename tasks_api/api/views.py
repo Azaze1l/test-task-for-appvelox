@@ -59,7 +59,7 @@ def taskDelete(request, pk):
         task.delete()
         return Response({'message': 'Task is successfully deleted'}, status=status.HTTP_200_OK)
     except Task.DoesNotExist:
-        return Response({'message': 'Task does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'message': 'Task does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
 
 @protected_view
@@ -73,7 +73,7 @@ def taskGet(request, pk):
         serializer = TaskSerializer(task, many=False)
         return Response({'task': serializer.data}, status=status.HTTP_200_OK)
     except Task.DoesNotExist:
-        return Response({'message': 'Task does not exist'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({'message': 'Task does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
 
 @protected_view
